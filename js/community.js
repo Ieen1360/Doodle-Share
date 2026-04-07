@@ -1,29 +1,11 @@
-import { db } from '../firebase-config.js';
-import { collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+const feed = document.getElementById('feed-comunidade');
 
-const globalGallery = document.getElementById('global-gallery');
-
-// Busca todas as artes ordenadas por tempo
-const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
-
-onSnapshot(q, (snapshot) => {
-    globalGallery.innerHTML = "";
-    
-    if (snapshot.empty) {
-        globalGallery.innerHTML = "<p>Ainda não há desenhos na comunidade. Seja o primeiro!</p>";
-        return;
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        console.log("Logado na comunidade como:", user.displayName);
+        feed.innerHTML = `<p>Olá, ${user.displayName}! O sistema de comunidade está carregando...</p>`;
+        // Aqui você adicionaria a lógica para puxar os desenhos do Firestore
+    } else {
+        feed.innerHTML = `<p>Faça login para ver a comunidade.</p>`;
     }
-
-    snapshot.forEach((doc) => {
-        const data = doc.data();
-        const card = `
-            <div class="card">
-                <img src="${data.url}" loading="lazy">
-                <div class="info">
-                    <p>Por: <b>${data.autor}</b></p>
-                </div>
-            </div>
-        `;
-        globalGallery.innerHTML += card;
-    });
 });
