@@ -3,38 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DoodleShare - Criar Arte</title>
+    <title>Desenhar</title>
     <link rel="stylesheet" href="css/style-geral.css">
-    <link rel="stylesheet" href="css/draw.css">
 </head>
 <body>
-
     <nav>
-        <div class="logo">Doodle<span>Share</span></div>
-        <div class="menu">
-            <a href="index.html">Meu Perfil</a>
-            <a href="draw.html" class="active">Desenhar</a>
-            <a href="community.html">Comunidade</a>
-        </div>
+        <a href="index.html">Sair</a>
+        <a href="community.html">Comunidade</a>
     </nav>
 
-    <main class="draw-container">
-        <div class="toolbar">
-            <div class="tool-group">
-                <label>Cor:</label>
-                <input type="color" id="colorPicker" value="#000000">
-            </div>
-            <div class="tool-group">
-                <label>Tamanho:</label>
-                <input type="range" id="sizePicker" min="1" max="50" value="5">
-            </div>
-            <button id="clearBtn">Limpar Tela</button>
-            <button id="postBtn" class="btn-success">Postar na Comunidade</button>
-        </div>
+    <canvas id="canvas-desenho" width="800" height="600"></canvas>
 
-        <canvas id="paintCanvas" width="800" height="500"></canvas>
-    </main>
-
-    <script type="module" src="js/draw.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="Firebase.js"></script>
+    <script src="js/draw.js"></script>
 </body>
 </html>
